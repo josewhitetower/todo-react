@@ -10,7 +10,7 @@ export default class Todo extends Component {
     this.setState({title: e.target.value})
   }
 
-  handleDoubleClick = () => {
+  handleDoubleClick = (e) => {
     this.setState(state => {
       return {
         isEditing: !state.isEditing
@@ -38,8 +38,8 @@ export default class Todo extends Component {
                   </div>)
 
     const form = (<form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.title} onDoubleClick={this.handleDoubleClick} onChange={this.handleChange}/>;
-                  </form>);
+                    <input autoFocus type="text" value={this.state.title} onDoubleClick={this.handleDoubleClick} onChange={this.handleChange} onBlur={this.handleDoubleClick}/>
+                  </form>)
 
     return (
       <div className="Todo">
