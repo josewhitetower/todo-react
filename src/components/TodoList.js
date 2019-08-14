@@ -28,6 +28,16 @@ export class TodoList extends Component {
     this.setState({todos});
   }
 
+  toggleDone = (id) => {
+    const todos = [...this.state.todos];
+    todos.forEach(todo => {
+      if (todo.id === id) {
+        todo.isDone = !todo.isDone;
+      }
+    })
+    this.setState({todos});
+  }
+
   deleteTodo = (id) => {
     const todos = this.state.todos.filter(todo => todo.id !== id);
     this.setState({todos});
@@ -35,11 +45,12 @@ export class TodoList extends Component {
 
   render() {
     const todos = this.state.todos.map(todo => {
-      return <Todo key={todo.id} todo={todo} editTodo={this.editTodo} deleteTodo={this.deleteTodo}/>
+      return <Todo key={todo.id} todo={todo} editTodo={this.editTodo} deleteTodo={this.deleteTodo} toggleDone={this.toggleDone}/>
     })
 
     return (
-      <div className="TodoList">
+      <div className="TodoList py-8 bg-red-500 text-center text-white font-sans rounded mt-8">
+        <h1 className="text-3xl uppercase font-thin mb-4">Todo List!</h1>
         {todos}
         <NewTodoForm addTodo={this.addTodo}/>
       </div>

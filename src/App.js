@@ -4,7 +4,7 @@ import TodoList from './components/TodoList'
 
 function App() {
   return (
-    <div className="App container mx-auto h-screen">
+    <div className="App max-w-lg mx-auto h-screen">
       <TodoList/>
     </div>
   );
