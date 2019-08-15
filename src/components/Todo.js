@@ -11,7 +11,7 @@ export default class Todo extends Component {
     this.setState({title: e.target.value})
   }
 
-  handleDoubleClick = (e) => {
+  handleEditTodo = (e) => {
     this.setState(state => {
       return {
         isEditing: !state.isEditing
@@ -41,13 +41,13 @@ export default class Todo extends Component {
                     <p className={this.props.todo.isDone ? "line-through" : ""} onClick={this.handleTitleClick}>{this.state.title}</p>
 
                     <div className="flex">
-                      <i className="fa fa-pencil fa-xs cursor-pointer" title="Edit" aria-hidden="true" onClick={this.handleDoubleClick}></i>
+                      <i className="fa fa-pencil fa-xs cursor-pointer" title="Edit" aria-hidden="true" onClick={this.handleEditTodo}></i>
                       <i className="fa fa-trash fa-xs ml-2 cursor-pointer" title="Delete" aria-hidden="true" onClick={this.handleClick}></i>
                     </div>
                   </div>)
 
     const form = (<form onSubmit={this.handleSubmit} className="text-center">
-                    <input autoFocus className="focus:outline-none bg-red-400 font-semibold" type="text" value={this.state.title} onChange={this.handleChange} onBlur={this.handleDoubleClick}/>
+                    <input autoFocus className="focus:outline-none bg-red-400 font-semibold" type="text" value={this.state.title} onChange={this.handleChange} onBlur={this.handleEditTodo}/>
                   </form>)
 
     return (
