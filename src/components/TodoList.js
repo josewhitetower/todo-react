@@ -6,7 +6,7 @@ import uuid from 'uuid/v4'
 export class TodoList extends Component {
 
   state = {
-    todos: []
+    todos: JSON.parse(localStorage.getItem("todos") || "[]")
   }
 
   addTodo = (todo) => {
@@ -43,13 +43,17 @@ export class TodoList extends Component {
     this.setState({todos});
   }
 
+  save = () => {
+    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+  }
+
   render() {
     const todos = this.state.todos.map(todo => {
       return <Todo key={todo.id} todo={todo} editTodo={this.editTodo} deleteTodo={this.deleteTodo} toggleDone={this.toggleDone}/>
     })
-
+    this.save();
     return (
-      <div className="TodoList py-8 bg-red-500 text-center text-white font-sans rounded mt-8">
+      <div className="TodoList py-8 bg-red-500 text-center text-white font-sans rounded mt-8 shadow-2xl">
         <h1 className="text-3xl uppercase font-thin mb-4">Todo List!</h1>
         {todos}
         <NewTodoForm addTodo={this.addTodo}/>

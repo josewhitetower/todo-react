@@ -51,7 +51,7 @@ export default class Todo extends Component {
                   </form>)
 
     return (
-      <div className="Todo bg-red-400 p-4 mb-2 text-left font-semibold">
+      <div className="Todo bg-red-400 p-4 mb-2 text-left font-semibold hover:bg-red-300">
         {this.state.isEditing ? form : todo}
       </div>
     )
