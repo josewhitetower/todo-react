@@ -23,8 +23,7 @@ export default class Todo extends Component {
     e.preventDefault();
     const [id, title] = [this.props.todo.id, this.state.title];
     this.props.editTodo(id, title);
-    this.setState({isEditing: false,  title: this.props.todo.title
-    })
+    this.setState({isEditing: false})
   }
 
   handleClick = () => {
