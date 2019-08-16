@@ -5,8 +5,17 @@ import uuid from "uuid/v4";
 
 export class TodoList extends Component {
   state = {
-    todos: JSON.parse(localStorage.getItem("todos") || "[]")
+    todos: []
   };
+
+  componentDidMount() {
+    const todos = JSON.parse(localStorage.getItem("todos") || "[]")
+    this.setState({todos})
+  }
+
+  componentDidUpdate() {
+    this.save();
+  }
 
   addTodo = todo => {
     todo.id = uuid();
@@ -45,10 +54,6 @@ export class TodoList extends Component {
   save = () => {
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
   };
-
-  componentDidUpdate() {
-    this.save();
-  }
 
   render() {
     const todos = this.state.todos.map(todo => {
