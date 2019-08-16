@@ -4,7 +4,8 @@ export default class Todo extends Component {
   state = {
     isEditing: false,
     title: this.props.todo.title,
-    isDone: this.props.todo.isDone
+    isDone: this.props.todo.isDone,
+    isBeingDragged: false,
   };
 
   handleChange = e => {
@@ -33,6 +34,18 @@ export default class Todo extends Component {
   handleTitleClick = () => {
     this.props.toggleDone(this.props.todo.id);
   };
+
+  handleDragStart = e => {
+    console.log('On Drag Start');
+    console.log(this.props.todo)
+    this.setState({isBeingDragged: true})
+  }
+
+  handleDragEnd = e => {
+    console.log('On Drag End');
+    console.log(this.props.todo)
+    this.setState({isBeingDragged: false})
+  }
 
   render() {
     const todo = (
@@ -75,7 +88,7 @@ export default class Todo extends Component {
     );
 
     return (
-      <div className="Todo bg-red-400 p-4 mb-2 text-left font-semibold hover:bg-red-300">
+      <div className="Todo bg-red-400 p-4 mb-2 text-left font-semibold hover:bg-red-300" draggable={true} onDragEnd={this.handleDragEnd} onDragStart={this.handleDragStart}>
         {this.state.isEditing ? form : todo}
       </div>
     );
