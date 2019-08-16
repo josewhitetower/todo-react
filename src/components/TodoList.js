@@ -46,6 +46,10 @@ export class TodoList extends Component {
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
   };
 
+  componentDidUpdate() {
+    this.save();
+  }
+
   render() {
     const todos = this.state.todos.map(todo => {
       return (
@@ -58,7 +62,6 @@ export class TodoList extends Component {
         />
       );
     });
-    this.save();
     return (
       <div className="TodoList py-8 bg-red-500 text-center text-white font-sans rounded mt-8 shadow-2xl">
         <h1 className="text-3xl uppercase font-thin mb-4">Todo List!</h1>
